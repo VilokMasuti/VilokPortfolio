@@ -1,21 +1,15 @@
 "use client";
 import Container from "@/components/common/Container";
-import CV from "../svgs/CV";
-import Image from "next/image";
-import { heroConfig, skillComponents, socialLinks } from "@/config/Hero";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import Skill from "@/components/common/Skill";
-import Silkss from "@/components/ui/Silkss";
+import { ThemeToggleButton, useThemeToggle } from "@/components/common/ThemeSwitch";
+import { heroConfig, skillComponents } from "@/config/Hero";
 import { parseTemplate } from "@/lib/hero";
-import { useThemeToggle } from "@/components/common/ThemeSwitch";
-import Beams from "@/components/ui/Beams";
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { Link } from 'next-view-transitions';
+import Image from "next/image";
+import CV from "../svgs/CV";
+import { Button } from '../ui/button';
 const buttonIcons = {
   CV: CV,
 };
@@ -41,7 +35,7 @@ const Hero = () => {
         );
       } else if (part.type === "text" && "text" in part) {
         return (
-          <span key={part.key} className="whitespace-pre-wrap">
+          <span key={part.key} className="   text-sm  font-satoshi  shadow-md   rounded-md p-1   whitespace-pre-wrap">
             {part.text}
           </span>
         );
@@ -52,38 +46,46 @@ const Hero = () => {
 
   const { isDark } = useThemeToggle();
   return (
-    <Container className="mx-auto relative max-w-4xl  p-10 rounded-lg">
-      <div className=" absolute inset-0 -z-10 overflow-hidden rounded-lg ">
-        <Beams
-          beamWidth={2}
-          beamHeight={15}
-          beamNumber={12}
-          lightColor="#ffffff"
-          speed={2}
-          noiseIntensity={1.75}
-          scale={0.2}
-          rotation={0}
-        />
-      </div>
+    <Container className="mx-auto relative max-w-3xl  p-10 ">
+      <div className=" flex flex-col h-full relative  ">
+
+        <div className="relative h-40 sm:h-52 md:h-64 w-full overflow-hidden shadow-2xl shadow-black/25">
+  <Image
+      src="/wallpaper.jpg"
+    alt="hero"
+    fill
+    priority
+    sizes="(max-width: 768px) 100vw, 768px"
+    className="object-cover object-center"
+  />
+</div>
+        <div className=' h-[50%] relative'>
+<motion.div className="flex items-center gap-4 font-inter-tight absolute top-4 right-4">
+          <ThemeToggleButton variant="circle" start="top-right" blur />
+        </motion.div>
+
 
       <Image
-        src="/assets/logo.png"
+        src="/remote.png"
         alt="hero"
         width={100}
         height={100}
-        className="size-24 rounded-full bg-blue-300 dark:bg-yellow-300"
+        className="size-24  rounded-full absolute -top-12 left-4   border-dashed     shadow-2xl shadow-black/25"
       />
       {/* Text Area */}
-      <div className="mt-8 flex flex-col gap-2">
-        <h1 className="text-2xl  tracking-tighter title  font-poppins md:text-2xl lg:text-4xl">
-          Hi, I&apos;m — {title}
+      <div className="mt-16 flex flex-col ">
+        <h1 className="text-xl  tracking-tighter  font-clash font-medium md:text-xl lg:text-2xl">
+        {name}
         </h1>
-        <div className="mt-4 flex flex-wrap  font-inter-tight   items-center gap-x-1.5 gap-y-2 text- whitespace-pre-wrap text-[#71717B] md:text-lg">
+        <p className= 'pl-1   text-neutral-500 text-sm font-satoshi'> @Hare Krishna</p>
+        <div className="  text-wrap  text-whitespace-pre-wrap   font-geist-mono    gap-x-2.5 gap-y-2      items-center     md:text-lg">
           {renderDescription()}
         </div>
       </div>
       {/* Buttons */}
-      <div className="mt-8 flex gap-4">
+      <div className=' flex justify-between items-end'>
+<div className='  flex'> <p className=' text-sm'>📍</p>  <span className='  underline  decoration-wavy font-satoshi '> Remote  </span> </div>
+ <div className="mt-6 flex gap-6 p-2">
         {buttons.map((button, index) => {
           const IconComponent =
             buttonIcons[button.icon as keyof typeof buttonIcons];
@@ -98,30 +100,17 @@ const Hero = () => {
             >
               {IconComponent && <IconComponent />}
               <Link href={button.href}>{button.text}</Link>
-            </Button>
+             </Button>
           );
         })}
       </div>
-
-      {/* Social Links */}
-      <div className="mt-8 flex gap-2">
-        {socialLinks.map((link) => (
-          <Tooltip key={link.name} delayDuration={0}>
-            <TooltipTrigger asChild>
-              <Link
-                href={link.href}
-                key={link.name}
-                className="text-secondary flex items-center gap-2"
-              >
-                <span className="size-6">{link.icon}</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{link.name}</p>
-            </TooltipContent>
-          </Tooltip>
-        ))}
       </div>
+
+
+        </div>
+
+
+</div>
     </Container>
   );
 };

@@ -3,7 +3,7 @@ import { navbarConfig } from "@/config/Navbar";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
-import { easeInOut, motion as Motion } from "motion/react";
+import { motion as Motion } from "motion/react";
 import Container from "./Container";
 import { ThemeToggleButton } from "./ThemeSwitch";
 

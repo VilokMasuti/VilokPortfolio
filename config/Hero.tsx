@@ -30,6 +30,7 @@ import X from "@/components/svgs/X";
 
 import JavaScript from "@/components/technologies/JavaScript";
 import MongoDB from "@/components/technologies/MongoDB";
+import Motion from "@/components/technologies/Motion";
 import NextJs from "@/components/technologies/NextJs";
 import NodeJs from "@/components/technologies/NodeJs";
 import PostgreSQL from "@/components/technologies/PostgreSQL";
@@ -49,11 +50,12 @@ export const skillComponents = {
   MongoDB: MongoDB,
   Prisma: Prisma,
   JavaScript: JavaScript,
+  Motion: Motion,
 };
 
 export const heroConfig = {
   // Personal Information
-  name: "VILOK",
+  name: "VILOK MASUTI",
   title: "A Frontend Web Developer.",
   avatar: "/assets/logo.png",
 
@@ -76,16 +78,21 @@ export const heroConfig = {
     },
 
     {
-      name: "PostgreSQL",
+      name: "JavaScript",
       href: "https://www.postgresql.org/",
-      component: "PostgreSQL",
+      component: "JavaScript",
     },
+    {
+      name: "Motion",
+      href: "https://www.framer.com/motion/",
+      component: "Motion",
+    }
   ],
 
   // Description Configuration
   description: {
     template:
-      "I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} With a focus on <b>UI</b> design, driven by a keen eye for design.",
+      "I build interactive web with Buddies {skills:0} {skills:1} {skills:2} {skills:3}With a focus on  <b>UI</b> design {skills:4} driven by a keen eye for design.",
   },
 
   // Buttons Configuration
